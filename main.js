@@ -6,26 +6,78 @@ Tabletop.init({
   simpleSheet: true,
 });
 
+function mergeNameAndWebsite(name, website) {
+  if (!website) { return name; }
+  return '<a href="http://' + website + '">' + name + '</a>';
+}
+
+function emailToLink(email) {
+  if (!email) { return ''; }
+  return ' <a href="mailto:' + email + '"> <i class="fa fa-envelope"> </a>'
+}
+
+
 function processData(data, tabletop) {
   if (!data[0]) return;
 
+  var processedData = [];
+
   for (i in data) {
-    if (data[i].Display !== 'y') continue;
+    var r = data[i];
+    if (r.Display !== 'y') continue;
 
-    var title = data[i]['Title'];
-    var titleKey = title.replace(' ', '');
-    if (!title) continue;
-
-    $('body').append('<div class="project-div" id="project-' + titleKey + '"></div>');
-    var div = '#project-' + titleKey;
-
-    var names = data[i]['Name'];
-    var research = data[i]['Research'];
-
-    $(div).append('<h1>Project</h1>');
-    $(div).append('<div class="hr" style="background:#' + Math.random().toString(16).substr(-6) + '"></div>');
-    $(div).append('<p><span>Faculty:</span><br>' + names + '</p>');
-    $(div).append('<p><span>Research</span><br>' + research + '</p>');
-    $(div).append('<p class="additional"></p>');
+    // Add a row to the final dataset
+    processedData.push([
+      mergeNameAndWebsite(r.Name, r.Website),
+      emailToLink(r.Email),
+      r.Research,
+      r.Division + (r['Applying for Public Humanities Collaborative?'] == 'Yes' ? ', PHC' : '')
+    ]);
   }
+
+  // Adding custom filtering
+  $.fn.dataTable.ext.search.push(
+    function(settings, data, dataIndex) {
+
+      // This is a JavaScript object whose keys will
+      // be the checked values (e.g. Arts, "Social Sciences")
+      showOnly = {};
+
+      $('input:checkbox:checked').each(function() {
+        showOnly[this.value] = 1;
+      });
+
+      var divisions = data[3].split(',').map(function(x) {return x.trim()});
+
+      for (i in divisions) {
+        if (showOnly[divisions[i]] === 1) {
+          return true;
+        }
+      }
+      return false;
+    }
+  );
+
+
+  $(document).ready(function() {
+    var table = $('#results').DataTable({
+      paging: false,
+      info: false,
+      ordering: false,
+      data: processedData,
+      columns: [
+        {title: 'Faculty', width: '120px', className: 'td-center'},
+        {title: 'Email', className: 'td-center'},
+        {title: 'Research'},
+        {title: 'Division', width: '50px'}
+      ]
+    });
+
+    $('input[name="filter"]').change(function() {
+      table.draw();
+    });
+
+  });
+
+
 }

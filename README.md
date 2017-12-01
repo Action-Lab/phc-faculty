@@ -1,4 +1,4 @@
-# phc-matching
+# phc-faculty
 Display Google Forms application data on Public Humanities Collaborative web page
 
 ## Live example

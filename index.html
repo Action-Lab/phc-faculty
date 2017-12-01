@@ -4,11 +4,37 @@
     <meta charset="utf-8">
     <title>Projects</title>
     <link rel="stylesheet" href="style.css">
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.2/tabletop.min.js'></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.2/tabletop.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="main.js"></script>
+
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
 
   <body>
+
+    <form id="filters">
+      <input type="checkbox" id="arts" name="filter" value="Arts" checked>
+      <label for="arts">Arts</label>
+
+      <input type="checkbox" id="humanities" name="filter" value="Humanities" checked>
+      <label for="humanities">Humanities</label>
+
+      <input type="checkbox" id="sciences" name="filter" value="Sciences" checked>
+      <label for="sciences">Sciences</label>
+
+      <input type="checkbox" id="social" name="filter" value="Social Sciences" checked>
+      <label for="social">Social Scienes</label>
+
+      <input type="checkbox" id="phc" name="filter" value="PHC" checked>
+      <label for="phc">PHC</label>
+    </form>
+
+    <table id="results" width="100%">
+    </table>
+
   </body>
 </html>
