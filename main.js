@@ -96,5 +96,22 @@ function processData(data, tabletop) {
 
   });
 
+  var filters = [
+    ['Arts', 'Art'],
+    ['Humanities', 'Hum'],
+    ['Sciences', 'Sci'],
+    ['Social Sciences', 'Soc'],
+    ['Public Humanities Collaborative', 'PHC']
+  ]
+
+  function renameCheckboxes() {
+    var shorten = $(window).width() < 900 ? 1 : 0;
+    $('#filters label').each(function(i) {
+      $(this).text(filters[i][shorten])
+    });
+  }
+
+  $(window).resize(renameCheckboxes);
+  renameCheckboxes();
 
 }
