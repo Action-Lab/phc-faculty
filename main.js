@@ -48,7 +48,7 @@ function processData(data, tabletop) {
       mergeNameAndWebsite(r.Name, r.Website),
       emailToLink(r.Email),
       mergeTitleResearchNeeds(r.Title, r.Research, r['Student Needs']),
-      r.Division + (r['Applying for Public Humanities Collaborative?'] == 'Yes' ? ', PHC' : '')
+      r.Division + (r['Applying for Public Humanities Collaborative?'] == 'Yes' ? ', Public Humanities Collaborative' : '')
     ]);
   }
 
