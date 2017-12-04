@@ -39,3 +39,7 @@ tr:last-child td {
   background: black;
   color: white;
 }
+
+.invisible {
+  display: none;
+}

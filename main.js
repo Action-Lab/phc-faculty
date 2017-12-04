@@ -8,8 +8,25 @@ Tabletop.init({
 
 function mergeNameAndWebsite(name, website) {
   if (!website) { return name; }
-  return '<a href="http://' + website + '">' + name + '</a>';
+  return '<span class="invisible">' + name + '</span>'
+    + '<a href="http://' + website + '">' + name + '</a>';
 }
+
+function mergeTitleResearchNeeds(title, research, needs) {
+  res = '';
+  if (title) {
+    res += '<h3>' + title + '</h3>';
+  }
+
+  res += '<p>' + research + '</p>';
+
+  if (needs) {
+    res += '<p>' + needs + '</p>';
+  }
+
+  return res;
+}
+
 
 function emailToLink(email) {
   if (!email) { return ''; }
@@ -30,7 +47,7 @@ function processData(data, tabletop) {
     processedData.push([
       mergeNameAndWebsite(r.Name, r.Website),
       emailToLink(r.Email),
-      r.Research,
+      mergeTitleResearchNeeds(r.Title, r.Research, r['Student Needs']),
       r.Division + (r['Applying for Public Humanities Collaborative?'] == 'Yes' ? ', PHC' : '')
     ]);
   }
@@ -63,13 +80,13 @@ function processData(data, tabletop) {
     var table = $('#results').DataTable({
       paging: false,
       info: false,
-      ordering: false,
+      ordering: true,
       data: processedData,
       columns: [
         {title: 'Faculty', width: '120px', className: 'td-center'},
-        {title: 'Email', className: 'td-center'},
-        {title: 'Research'},
-        {title: 'Division', width: '50px'}
+        {title: 'Email', className: 'td-center',  orderable: false},
+        {title: 'Research', orderable: false},
+        {title: 'Division', width: '50px', orderable: false}
       ]
     });
 
