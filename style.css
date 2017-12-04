@@ -43,3 +43,8 @@ tr:last-child td {
 .invisible {
   display: none;
 }
+
+.emphasis {
+  font-weight: bold;
+  font-size: 1.07em;
+}
