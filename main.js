@@ -47,8 +47,8 @@ function processData(data, tabletop) {
     processedData.push([
       mergeNameAndWebsite(r.Name, r.Website),
       emailToLink(r.Email),
+      r.Division + (r['Applying for Public Humanities Collaborative?'] == 'Yes' ? ', Public Humanities Collaborative' : ''),
       mergeTitleResearchNeeds(r.Title, r.Research, r['Student Needs']),
-      r.Division + (r['Applying for Public Humanities Collaborative?'] == 'Yes' ? ', Public Humanities Collaborative' : '')
     ]);
   }
 
@@ -64,7 +64,7 @@ function processData(data, tabletop) {
         showOnly[this.value] = 1;
       });
 
-      var divisions = data[3].split(',').map(function(x) {return x.trim()});
+      var divisions = data[2].split(',').map(function(x) {return x.trim()});
 
       for (i in divisions) {
         if (showOnly[divisions[i]] === 1) {
@@ -85,8 +85,8 @@ function processData(data, tabletop) {
       columns: [
         {title: 'Faculty', width: '120px', className: 'td-center'},
         {title: 'Email', className: 'td-center',  orderable: false},
+        {title: 'Division', width: '50px', orderable: false},
         {title: 'Research', orderable: false},
-        {title: 'Division', width: '50px', orderable: false}
       ]
     });
 
