@@ -21,7 +21,7 @@ function mergeTitleResearchNeeds(title, research, needs) {
   res += '<p><span class="emphasis">Research Project: </span>' + research + '</p>';
 
   if (needs) {
-    res += '<p><span class="emphasis">Student Needs: </span>' + needs + '</p>';
+    res += '<p><span class="emphasis">Student Researchers: </span>' + needs + '</p>';
   }
 
   return res;
@@ -48,7 +48,7 @@ function processData(data, tabletop) {
       mergeNameAndWebsite(r.Name, r.Website),
       emailToLink(r.Email),
       r.Division + (r['Applying for Public Humanities Collaborative?'] == 'Yes' ? ', Public Humanities Collaborative' : ''),
-      mergeTitleResearchNeeds(r.Title, r.Research, r['Student Needs']),
+      mergeTitleResearchNeeds(r.Title, r.Research, r['Student Researchers']),
     ]);
   }
 
