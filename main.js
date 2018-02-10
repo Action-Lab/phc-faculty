@@ -9,7 +9,7 @@ Tabletop.init({
 function mergeNameAndWebsite(name, website) {
   if (!website) { return name; }
   return '<span class="invisible">' + name + '</span>'
-    + '<a href="http://' + website + '">' + name + '</a>';
+    + '<a target="_blank" href="http://' + website + '">' + name + '</a>';
 }
 
 function mergeTitleResearchNeeds(title, research, needs) {
