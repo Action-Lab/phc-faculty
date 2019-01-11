@@ -1,8 +1,10 @@
 # phc-faculty
 Display Google Forms application data on Public Humanities Collaborative web page
 
-## Live example
-http://commons.trincoll.edu/cli/phc
+## Live examples
+https://cher.trincoll.edu/community-learning/public-humanities-collaborative/faculty/
+
+https://www.trincoll.edu/Academics/StudentResearch/SRP/Pages/SRPsearch.aspx
 
 ## Requirements
 - Google Form responses must appear in Google Sheets, which must be published. Insert URLs in main.js
